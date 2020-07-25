@@ -35,7 +35,7 @@ namespace Gen
                 }
                 s += "\n";
             }
-            
+
             //Console.WriteLine(s);
             _s = s;
             s = "";
@@ -47,9 +47,9 @@ namespace Gen
             int xParam1, yParam1, xParam2, yParam2;
             xParam1 = yParam1 = xParam2 = yParam2 = 0;
 
-            for (int i = 0; i < 9; i+=3)
+            for (int i = 0; i < 9; i += 3)
             {
-                for (int k = 0; k < 9; k+=3)
+                for (int k = 0; k < 9; k += 3)
                 {
                     for (int j = 0; j < 3; j++)
                     {
@@ -65,12 +65,12 @@ namespace Gen
                                 xParam2 = i + j;
                                 yParam2 = k + z;
                             }
-                        }                        
+                        }
                     }
                     grid[xParam1, yParam1] = findValue2;
                     grid[xParam2, yParam2] = findValue1;
                 }
-                
+
             }
         }
 

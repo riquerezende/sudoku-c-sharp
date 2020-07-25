@@ -1,36 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-
 
 using Windows.UI;
 using Windows.UI.Text;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace SudGame{
+namespace SudGame
+{
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page 
-    {  
+    public sealed partial class MainPage : Page
+    {
 
         static int[,] matriz;
 
         static int acertos = 0;
-        static int acertosAuto = 79;
+        static int acertosAuto = 71;
         static int acertosNecessarios = 81;
 
         List<string> acertados = new List<string>();
@@ -42,7 +34,7 @@ namespace SudGame{
             interacao.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
             interacao.FontSize = 14;
             interacao.Text = Shared.sharedMessage();
-            
+
         }
         private void btnGen_Click(object sender, RoutedEventArgs e)
         {
@@ -54,14 +46,14 @@ namespace SudGame{
 
 
             tempbox.Text = "";
-            tempbox2.Text = ""; 
+            tempbox2.Text = "";
             #endregion
             ////////////////////////////////////////////////////////////////////////////
             matriz = Gen.SudokuGen.startAndGetSudoku();
 
             ////////////////////////////////////////////////////////////////////////////
-            this.cleanGrid();   
-                         
+            this.cleanGrid();
+
             ////////////////////////////////////////////////////////////////////////////
             int position, positionCont = 0;
             int[] positions = new int[acertosAuto];
@@ -94,15 +86,15 @@ namespace SudGame{
             Array.Sort(positions);
 
             ////////////////////////////////////////////////////////////////////////////            
-            
-            TextBox tBox; 
+
+            TextBox tBox;
             var preto = new SolidColorBrush(Color.FromArgb(100, 0, 0, 0));
             var azul = new SolidColorBrush(Color.FromArgb(100, 0, 0, 255));
             var verm = new SolidColorBrush(Color.FromArgb(100, 255, 0, 0));
             var branco = new SolidColorBrush(Color.FromArgb(100, 255, 255, 255));
             var verde = new SolidColorBrush(Color.FromArgb(100, 0, 255, 0));
-            var red = new SolidColorBrush(Color.FromArgb(100, 255, 46, 12));          
-            
+            var red = new SolidColorBrush(Color.FromArgb(100, 255, 46, 12));
+
             int z = 0;
             bool tem;
 
@@ -120,10 +112,10 @@ namespace SudGame{
                         }
                     }
                     tBox = new TextBox();
-                    tBox = this.boxPadrao(tBox, column, row, tem);                     
+                    tBox = this.boxPadrao(tBox, column, row, tem);
                     z++;
                 }
-            } 
+            }
         }
 
         private TextBox boxPadrao(TextBox temp, int column, int row, bool tem)
@@ -145,7 +137,7 @@ namespace SudGame{
             temp.SetValue(TextBox.FontWeightProperty, FontWeights.Bold);
             temp.SetValue(Grid.ColumnProperty, column);
             temp.SetValue(Grid.RowProperty, row);
-            temp.MaxLength = 1; 
+            temp.MaxLength = 1;
 
             if (tem)
             {
@@ -168,8 +160,8 @@ namespace SudGame{
         }
 
         //LIMPAR SUDOKU
-        private void cleanGrid() 
-        {        
+        private void cleanGrid()
+        {
             TextBox tBox;
             for (int i = 0; i < 3; i++)
             {
@@ -184,13 +176,13 @@ namespace SudGame{
                         gridSud.Children.Add(tBox);
                     }
                 }
-            }  
-        }   
+            }
+        }
 
         //ALTERAR
         private void avaliar(object sender)
         {
-            TextBox objTextBox = (TextBox)sender;            
+            TextBox objTextBox = (TextBox)sender;
 
             var preto = new SolidColorBrush(Color.FromArgb(100, 0, 0, 0));
             var azul = new SolidColorBrush(Color.FromArgb(100, 0, 0, 255));
@@ -274,14 +266,14 @@ namespace SudGame{
             {
                 interacao.Text = "Parabéns!";
             }
-            
+
         }
-        
+
         //QUANDO UMA TECLA É PRESSIONADA
         private void teste_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            this.avaliar(sender);            
-        }  
+            this.avaliar(sender);
+        }
 
         //QUANDO UMA CAIXA É SELECIONADA
         private void tbox_GotFocus(object sender, RoutedEventArgs e)
@@ -289,14 +281,14 @@ namespace SudGame{
             TextBox objTextBox = (TextBox)sender;
             objTextBox.SelectAll();
 
-            this.avaliar(sender);  
+            this.avaliar(sender);
         }
 
         //QUANDO UMA CAIXA PERDE A SELEÇÃO
         private void tbox_LostFocus(object sender, RoutedEventArgs e)
         {
             this.avaliar(sender);
-        }  
+        }
     }
 
 }

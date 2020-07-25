@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-
 using Windows.UI;
 using Windows.UI.Text;
-
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
@@ -40,8 +31,6 @@ namespace SudGame
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-          
-
             interacao.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
             interacao.FontSize = 14;
             interacao.Text = Shared.sharedMessage();
@@ -63,9 +52,6 @@ namespace SudGame
             // this event is handled for you.
         }
 
-
-
-
         private void btnGen_Click(object sender, RoutedEventArgs e)
         {
             acertos = 0;
@@ -77,13 +63,11 @@ namespace SudGame
 
             tempbox.Text = "";
             tempbox2.Text = "";
-            ////////////////////////////////////////////////////////////////////////////
+
             matriz = Gen.SudokuGen.startAndGetSudoku();
 
-            ////////////////////////////////////////////////////////////////////////////
             this.cleanGrid();
 
-            ////////////////////////////////////////////////////////////////////////////
             int position, positionCont = 0;
             int[] positions = new int[acertosAuto];
             bool repetido;
@@ -147,8 +131,6 @@ namespace SudGame
             }
         }
 
-
-
         private TextBox boxPadrao(TextBox temp, int column, int row, bool tem)
         {
             var preto = new SolidColorBrush(Color.FromArgb(100, 0, 0, 0));
@@ -174,8 +156,8 @@ namespace SudGame
             temp.SetValue(TextBox.ForegroundProperty, preto);
 
             temp.Margin = new Thickness(0, 0, 0, 0);
-            
-            temp.Padding = new Thickness(13,2,0,0);
+
+            temp.Padding = new Thickness(13, 2, 0, 0);
             temp.SetValue(TextBox.FontWeightProperty, FontWeights.Bold);
             temp.SetValue(Grid.ColumnProperty, column);
             temp.SetValue(Grid.RowProperty, row);
@@ -202,7 +184,6 @@ namespace SudGame
             return temp;
         }
 
-
         //LIMPAR SUDOKU
         private void cleanGrid()
         {
@@ -222,7 +203,6 @@ namespace SudGame
                 }
             }
         }
-
 
         //ALTERAR
         private void avaliar(object sender)
@@ -318,7 +298,6 @@ namespace SudGame
             this.avaliar(sender);
         }
 
-
         //QUANDO UMA CAIXA É SELECIONADA
         private void tbox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -328,18 +307,10 @@ namespace SudGame
             this.avaliar(sender);
         }
 
-
-
-
         //QUANDO UMA CAIXA PERDE A SELEÇÃO
         private void tbox_LostFocus(object sender, RoutedEventArgs e)
         {
             this.avaliar(sender);
-        }  
-
-
-
-
-
+        }
     }
 }
